@@ -1,0 +1,241 @@
+{
+  "$schema": "duongnq",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "type": "string"
+        },
+        "clouds": {
+          "type": "object",
+          "properties": {
+            "all": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "all"
+          ]
+        },
+        "cod": {
+          "type": "integer"
+        },
+        "coord": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lon": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "lat",
+            "lon"
+          ]
+        },
+        "dt": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "main": {
+          "type": "object",
+          "properties": {
+            "feels_like": {
+              "type": "number"
+            },
+            "grnd_level": {
+              "type": "integer"
+            },
+            "humidity": {
+              "type": "integer"
+            },
+            "pressure": {
+              "type": "integer"
+            },
+            "sea_level": {
+              "type": "integer"
+            },
+            "temp": {
+              "type": "number"
+            },
+            "temp_max": {
+              "type": "number"
+            },
+            "temp_min": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "feels_like",
+            "grnd_level",
+            "humidity",
+            "pressure",
+            "sea_level",
+            "temp",
+            "temp_max",
+            "temp_min"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "sys": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "sunrise": {
+              "type": "integer"
+            },
+            "sunset": {
+              "type": "integer"
+            },
+            "type": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "country",
+            "id",
+            "sunrise",
+            "sunset",
+            "type"
+          ]
+        },
+        "timezone": {
+          "type": "integer"
+        },
+        "visibility": {
+          "type": "integer"
+        },
+        "weather": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "integer"
+                },
+                "main": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "description",
+                "icon",
+                "id",
+                "main"
+              ]
+            }
+          ]
+        },
+        "wind": {
+          "type": "object",
+          "properties": {
+            "deg": {
+              "type": "integer"
+            },
+            "gust": {
+              "type": "number"
+            },
+            "speed": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "deg",
+            "gust",
+            "speed"
+          ]
+        }
+      },
+      "required": [
+        "base",
+        "clouds",
+        "cod",
+        "coord",
+        "dt",
+        "id",
+        "main",
+        "name",
+        "sys",
+        "timezone",
+        "visibility",
+        "weather",
+        "wind"
+      ]
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "Access-Control-Allow-Credentials": {
+          "type": "string"
+        },
+        "Access-Control-Allow-Methods": {
+          "type": "string"
+        },
+        "Access-Control-Allow-Origin": {
+          "type": "string"
+        },
+        "Connection": {
+          "type": "string"
+        },
+        "Content-Length": {
+          "type": "string"
+        },
+        "Content-Type": {
+          "type": "string"
+        },
+        "Date": {
+          "type": "string"
+        },
+        "Server": {
+          "type": "string"
+        },
+        "X-Cache-Key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Access-Control-Allow-Credentials",
+        "Access-Control-Allow-Methods",
+        "Access-Control-Allow-Origin",
+        "Connection",
+        "Content-Length",
+        "Content-Type",
+        "Date",
+        "Server",
+        "X-Cache-Key"
+      ]
+    },
+    "seconds": {
+      "type": "number"
+    },
+    "status": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "body",
+    "headers",
+    "seconds",
+    "status"
+  ]
+}

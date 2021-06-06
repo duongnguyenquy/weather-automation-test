@@ -1,0 +1,10 @@
+*** Test Cases ***,${app_id},${city_code},${expected_http_status},${expected_cod},${expected_message}
+Empty app id,${EMPTY},${EMPTY},401,401,Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.
+App id doesn't exists,aaa,${EMPTY},401,401,Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.
+Empty app id with city code,${EMPTY},Hanoi,401,401,Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.
+App id doesn't exists with city code,aaa,Hanoi,401,401,Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.
+Empty city code,2f08789bc0f5212446e72aa9c5ea7937,${EMPTY},400,400,Nothing to geocode
+City code doesn't exists,2f08789bc0f5212446e72aa9c5ea7937,qwerty,404,404,city not found
+City code is null,2f08789bc0f5212446e72aa9c5ea7937,null,404,404,city not found
+City code with special characters,2f08789bc0f5212446e72aa9c5ea7937,!@#$%^,404,404,city not found
+City code with 255 length,2f08789bc0f5212446e72aa9c5ea7937,t5BdQe2T2muOmoTa5ShBiseMv90JKECHKEBN0dPYJv6utRG7PqfjQQBMaWr9tJYgxFI9pm5kXyktZnQWWCbWcwwbOXl90PoSJdaxXdtIomEE8hfRa1nIlopWjAsxddzmv246Pe4OlYLX5Kzec0yaHNtQh6FmE6i5suBwqMlStOoU1sKK8WkyK7glp9UlfG1CfkOrYnhAFXGs4PvKLRTBoH5VibmRirOc0tah2yfxrwM8uZDXBwNkQfjMGcRgDVF,404,404,city not found

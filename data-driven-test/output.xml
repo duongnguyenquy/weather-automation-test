@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.3 (Python 3.8.5 on win32)" generated="20210606 22:11:30.462" rpa="false" schemaversion="2">
+<suite id="s1" name="Weather-By-Coordinate" source="D:\workspace\NAB-assignment\data-driven-test\weather-by-coordinate.robot">
+<test id="s1-t1" name="Empty both lat and long">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:30.764" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='' | ${long}='' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:30.764" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:30.765" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '', 'lon': ''}</msg>
+<msg timestamp="20210606 22:11:30.765" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '', 'lon': ''}</msg>
+<status status="PASS" starttime="20210606 22:11:30.764" endtime="20210606 22:11:30.765"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:30.765" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '', 'lon': ''} ]</msg>
+<msg timestamp="20210606 22:11:30.767" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:30.954" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=&amp;lon= HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:30.999" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:29 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=&amp;lon='},
+ 'seconds': 0.186479,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:30.765" endtime="20210606 22:11:30.999"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:31.000" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:31.000" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.000" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:31.000" endtime="20210606 22:11:31.000"/>
+</kw>
+<msg timestamp="20210606 22:11:31.000" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:30.999" endtime="20210606 22:11:31.000"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:31.001" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.001" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.033" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:31.001" endtime="20210606 22:11:31.033"/>
+</kw>
+<msg timestamp="20210606 22:11:31.033" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.001" endtime="20210606 22:11:31.033"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:31.033" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.034" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:31.055" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:31.033" endtime="20210606 22:11:31.055"/>
+</kw>
+<msg timestamp="20210606 22:11:31.055" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.033" endtime="20210606 22:11:31.055"/>
+</kw>
+<msg timestamp="20210606 22:11:31.055" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:30.763" endtime="20210606 22:11:31.055"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:30.762" endtime="20210606 22:11:31.056"/>
+</test>
+<test id="s1-t2" name="Empty lat">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>${EMPTY}</arg>
+<arg>105.8412</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:31.057" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='' | ${long}='105.8412' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:31.057" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:31.058" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '', 'lon': '105.8412'}</msg>
+<msg timestamp="20210606 22:11:31.058" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '', 'lon': '105.8412'}</msg>
+<status status="PASS" starttime="20210606 22:11:31.057" endtime="20210606 22:11:31.058"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:31.058" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '', 'lon': '105.8412'} ]</msg>
+<msg timestamp="20210606 22:11:31.059" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:31.239" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=&amp;lon=105.8412 HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:31.240" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:30 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=&amp;lon=105.84'},
+ 'seconds': 0.179194,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:31.058" endtime="20210606 22:11:31.240"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:31.241" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:31.241" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.241" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:31.241" endtime="20210606 22:11:31.241"/>
+</kw>
+<msg timestamp="20210606 22:11:31.241" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.240" endtime="20210606 22:11:31.241"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:31.242" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.242" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.264" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:31.242" endtime="20210606 22:11:31.264"/>
+</kw>
+<msg timestamp="20210606 22:11:31.264" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.241" endtime="20210606 22:11:31.264"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:31.264" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.265" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:31.285" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:31.265" endtime="20210606 22:11:31.285"/>
+</kw>
+<msg timestamp="20210606 22:11:31.285" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.264" endtime="20210606 22:11:31.285"/>
+</kw>
+<msg timestamp="20210606 22:11:31.286" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.056" endtime="20210606 22:11:31.286"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:31.056" endtime="20210606 22:11:31.286"/>
+</test>
+<test id="s1-t3" name="Empty long">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>21.0245</arg>
+<arg>${EMPTY}</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:31.288" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='21.0245' | ${long}='' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:31.288" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:31.288" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '21.0245', 'lon': ''}</msg>
+<msg timestamp="20210606 22:11:31.289" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '21.0245', 'lon': ''}</msg>
+<status status="PASS" starttime="20210606 22:11:31.288" endtime="20210606 22:11:31.289"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:31.289" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '21.0245', 'lon': ''} ]</msg>
+<msg timestamp="20210606 22:11:31.290" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:31.374" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=21.0245&amp;lon= HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:31.375" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:30 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=21.02&amp;lon='},
+ 'seconds': 0.083638,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:31.289" endtime="20210606 22:11:31.375"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:31.375" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:31.376" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.376" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:31.375" endtime="20210606 22:11:31.376"/>
+</kw>
+<msg timestamp="20210606 22:11:31.376" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.375" endtime="20210606 22:11:31.376"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:31.376" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.377" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.398" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:31.377" endtime="20210606 22:11:31.398"/>
+</kw>
+<msg timestamp="20210606 22:11:31.398" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.376" endtime="20210606 22:11:31.398"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:31.399" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.399" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:31.420" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:31.399" endtime="20210606 22:11:31.420"/>
+</kw>
+<msg timestamp="20210606 22:11:31.421" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.398" endtime="20210606 22:11:31.421"/>
+</kw>
+<msg timestamp="20210606 22:11:31.421" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.287" endtime="20210606 22:11:31.421"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:31.287" endtime="20210606 22:11:31.421"/>
+</test>
+<test id="s1-t4" name="Special character lat">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>!@#$%^</arg>
+<arg>105.8412</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:31.423" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='!@#$%^' | ${long}='105.8412' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:31.423" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:31.424" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': '!@#$%^',
+ 'lon': '105.8412'}</msg>
+<msg timestamp="20210606 22:11:31.424" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '!@#$%^', 'lon': '105.8412'}</msg>
+<status status="PASS" starttime="20210606 22:11:31.423" endtime="20210606 22:11:31.424"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:31.424" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': '!@#$%^',
+ 'lon': '105.8412'} ]</msg>
+<msg timestamp="20210606 22:11:31.426" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:31.609" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=%21%40%23%24%25%5E&amp;lon=105.8412 HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:31.610" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:30 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=&amp;lon=105.84'},
+ 'seconds': 0.18391300000000002,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:31.424" endtime="20210606 22:11:31.610"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:31.610" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:31.611" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.611" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:31.610" endtime="20210606 22:11:31.611"/>
+</kw>
+<msg timestamp="20210606 22:11:31.611" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.610" endtime="20210606 22:11:31.611"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:31.611" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.612" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.636" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:31.612" endtime="20210606 22:11:31.637"/>
+</kw>
+<msg timestamp="20210606 22:11:31.637" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.611" endtime="20210606 22:11:31.637"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:31.637" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.638" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:31.660" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:31.637" endtime="20210606 22:11:31.660"/>
+</kw>
+<msg timestamp="20210606 22:11:31.660" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.637" endtime="20210606 22:11:31.660"/>
+</kw>
+<msg timestamp="20210606 22:11:31.660" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.423" endtime="20210606 22:11:31.660"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:31.422" endtime="20210606 22:11:31.661"/>
+</test>
+<test id="s1-t5" name="Special character long">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>21.0245</arg>
+<arg>!@#$%^</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:31.662" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='21.0245' | ${long}='!@#$%^' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:31.663" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:31.663" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '21.0245', 'lon': '!@#$%^'}</msg>
+<msg timestamp="20210606 22:11:31.663" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '21.0245', 'lon': '!@#$%^'}</msg>
+<status status="PASS" starttime="20210606 22:11:31.663" endtime="20210606 22:11:31.663"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:31.664" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '21.0245', 'lon': '!@#$%^'} ]</msg>
+<msg timestamp="20210606 22:11:31.665" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:31.844" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=21.0245&amp;lon=%21%40%23%24%25%5E HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:31.845" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:30 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=21.02&amp;lon='},
+ 'seconds': 0.179582,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:31.663" endtime="20210606 22:11:31.845"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:31.845" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:31.846" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.846" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:31.846" endtime="20210606 22:11:31.846"/>
+</kw>
+<msg timestamp="20210606 22:11:31.846" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.845" endtime="20210606 22:11:31.846"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:31.847" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.847" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.869" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:31.847" endtime="20210606 22:11:31.869"/>
+</kw>
+<msg timestamp="20210606 22:11:31.869" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.846" endtime="20210606 22:11:31.869"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:31.869" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.870" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:31.891" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:31.870" endtime="20210606 22:11:31.891"/>
+</kw>
+<msg timestamp="20210606 22:11:31.891" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.869" endtime="20210606 22:11:31.891"/>
+</kw>
+<msg timestamp="20210606 22:11:31.891" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.662" endtime="20210606 22:11:31.891"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:31.662" endtime="20210606 22:11:31.892"/>
+</test>
+<test id="s1-t6" name="Lat with 255 length">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn</arg>
+<arg>105.8412</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:31.894" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn' | ${long}='105.8412' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:31.894" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:31.894" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': 'YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn',
+ 'lon': '105.8412'}</msg>
+<msg timestamp="20210606 22:11:31.894" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': 'YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx1...</msg>
+<status status="PASS" starttime="20210606 22:11:31.894" endtime="20210606 22:11:31.894"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:31.895" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': 'YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn',
+ 'lon': '105.8412'} ]</msg>
+<msg timestamp="20210606 22:11:31.896" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:31.991" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn&amp;lon=105.8412 HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:31.992" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:31 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=&amp;lon=105.84'},
+ 'seconds': 0.095821,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:31.895" endtime="20210606 22:11:31.992"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:31.993" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:31.993" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:31.993" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:31.993" endtime="20210606 22:11:31.993"/>
+</kw>
+<msg timestamp="20210606 22:11:31.993" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.992" endtime="20210606 22:11:31.993"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:31.994" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:31.994" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:32.016" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:31.994" endtime="20210606 22:11:32.016"/>
+</kw>
+<msg timestamp="20210606 22:11:32.016" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.993" endtime="20210606 22:11:32.016"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:32.016" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:32.017" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:32.038" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:32.016" endtime="20210606 22:11:32.038"/>
+</kw>
+<msg timestamp="20210606 22:11:32.038" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.016" endtime="20210606 22:11:32.038"/>
+</kw>
+<msg timestamp="20210606 22:11:32.038" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:31.893" endtime="20210606 22:11:32.039"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:31.893" endtime="20210606 22:11:32.039"/>
+</test>
+<test id="s1-t7" name="Long with 255 length">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>21.0245</arg>
+<arg>YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:32.040" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='21.0245' | ${long}='YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:32.041" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:32.041" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': '21.0245',
+ 'lon': 'YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn'}</msg>
+<msg timestamp="20210606 22:11:32.041" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '21.0245', 'lon': 'YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjx...</msg>
+<status status="PASS" starttime="20210606 22:11:32.041" endtime="20210606 22:11:32.041"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:32.042" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': '21.0245',
+ 'lon': 'YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn'} ]</msg>
+<msg timestamp="20210606 22:11:32.043" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:32.125" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=21.0245&amp;lon=YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:32.126" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:31 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=21.02&amp;lon='},
+ 'seconds': 0.08250400000000001,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:32.041" endtime="20210606 22:11:32.126"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:32.127" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:32.127" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:32.127" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:32.127" endtime="20210606 22:11:32.127"/>
+</kw>
+<msg timestamp="20210606 22:11:32.127" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.126" endtime="20210606 22:11:32.127"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:32.128" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:32.128" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:32.149" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:32.128" endtime="20210606 22:11:32.149"/>
+</kw>
+<msg timestamp="20210606 22:11:32.150" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.127" endtime="20210606 22:11:32.150"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:32.150" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:32.150" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:32.171" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:32.150" endtime="20210606 22:11:32.171"/>
+</kw>
+<msg timestamp="20210606 22:11:32.172" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.150" endtime="20210606 22:11:32.172"/>
+</kw>
+<msg timestamp="20210606 22:11:32.172" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.040" endtime="20210606 22:11:32.172"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:32.040" endtime="20210606 22:11:32.172"/>
+</test>
+<test id="s1-t8" name="Injection Lat">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>SELECT * FROM weather</arg>
+<arg>105.8412</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:32.174" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='SELECT * FROM weather' | ${long}='105.8412' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:32.174" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:32.175" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': 'SELECT * FROM weather',
+ 'lon': '105.8412'}</msg>
+<msg timestamp="20210606 22:11:32.175" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': 'SELECT * FROM weather', 'lon': '105.8412'}</msg>
+<status status="PASS" starttime="20210606 22:11:32.174" endtime="20210606 22:11:32.175"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:32.175" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': 'SELECT * FROM weather',
+ 'lon': '105.8412'} ]</msg>
+<msg timestamp="20210606 22:11:32.177" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:32.352" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=SELECT+%2A+FROM+weather&amp;lon=105.8412 HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:32.353" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:31 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=&amp;lon=105.84'},
+ 'seconds': 0.17702,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:32.175" endtime="20210606 22:11:32.353"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:32.354" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:32.354" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:32.354" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:32.354" endtime="20210606 22:11:32.354"/>
+</kw>
+<msg timestamp="20210606 22:11:32.355" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.353" endtime="20210606 22:11:32.355"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:32.355" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:32.355" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:32.377" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:32.355" endtime="20210606 22:11:32.377"/>
+</kw>
+<msg timestamp="20210606 22:11:32.377" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.355" endtime="20210606 22:11:32.377"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:32.377" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:32.378" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:32.399" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:32.377" endtime="20210606 22:11:32.399"/>
+</kw>
+<msg timestamp="20210606 22:11:32.399" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.377" endtime="20210606 22:11:32.399"/>
+</kw>
+<msg timestamp="20210606 22:11:32.399" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.174" endtime="20210606 22:11:32.399"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:32.173" endtime="20210606 22:11:32.400"/>
+</test>
+<test id="s1-t9" name="Injection Long">
+<kw name="Call api request to get current weather information by latitude and longitude">
+<arg>2f08789bc0f5212446e72aa9c5ea7937</arg>
+<arg>21.0245</arg>
+<arg>SELECT * FROM weather</arg>
+<arg>400</arg>
+<arg>400</arg>
+<arg>Nothing to geocode</arg>
+<msg timestamp="20210606 22:11:32.401" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${lat}='21.0245' | ${long}='SELECT * FROM weather' | ${expected_http_status}='400' | ${expected_cod}='400' | ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>lat=${lat}</arg>
+<arg>lon=${long}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:11:32.401" level="TRACE">Arguments: [ 'appId=${app_id}' | 'lat=${lat}' | 'lon=${long}' ]</msg>
+<msg timestamp="20210606 22:11:32.402" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': '21.0245',
+ 'lon': 'SELECT * FROM weather'}</msg>
+<msg timestamp="20210606 22:11:32.402" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lat': '21.0245', 'lon': 'SELECT * FROM weather'}</msg>
+<status status="PASS" starttime="20210606 22:11:32.401" endtime="20210606 22:11:32.402"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:11:32.402" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937',
+ 'lat': '21.0245',
+ 'lon': 'SELECT * FROM weather'} ]</msg>
+<msg timestamp="20210606 22:11:32.403" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:11:32.484" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=21.0245&amp;lon=SELECT+%2A+FROM+weather HTTP/1.1" 400 44</msg>
+<msg timestamp="20210606 22:11:32.485" level="TRACE">Return: {'body': {'cod': '400', 'message': 'Nothing to geocode'},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '44',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:11:31 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lat=21.02&amp;lon='},
+ 'seconds': 0.080864,
+ 'status': 400}</msg>
+<status status="PASS" starttime="20210606 22:11:32.402" endtime="20210606 22:11:32.485"/>
+</kw>
+<kw name="Verify response status code">
+<arg>${expected_http_status}</arg>
+<msg timestamp="20210606 22:11:32.485" level="TRACE">Arguments: [ ${expected_http_status_code}='400' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_http_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:11:32.486" level="TRACE">Arguments: [ 'response status' | '400' ]</msg>
+<msg timestamp="20210606 22:11:32.486" level="TRACE">Return: [400]</msg>
+<status status="PASS" starttime="20210606 22:11:32.486" endtime="20210606 22:11:32.486"/>
+</kw>
+<msg timestamp="20210606 22:11:32.486" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.485" endtime="20210606 22:11:32.486"/>
+</kw>
+<kw name="Verify response cod">
+<arg>${expected_cod}</arg>
+<msg timestamp="20210606 22:11:32.487" level="TRACE">Arguments: [ ${expected_cod}='400' ]</msg>
+<kw name="String" library="REST">
+<arg>$.cod</arg>
+<arg>${expected_cod}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:32.487" level="TRACE">Arguments: [ '$.cod' | '400' ]</msg>
+<msg timestamp="20210606 22:11:32.509" level="TRACE">Return: ['400']</msg>
+<status status="PASS" starttime="20210606 22:11:32.487" endtime="20210606 22:11:32.509"/>
+</kw>
+<msg timestamp="20210606 22:11:32.509" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.486" endtime="20210606 22:11:32.509"/>
+</kw>
+<kw name="Verify response message">
+<arg>${expected_message}</arg>
+<msg timestamp="20210606 22:11:32.509" level="TRACE">Arguments: [ ${expected_message}='Nothing to geocode' ]</msg>
+<kw name="String" library="REST">
+<arg>$.message</arg>
+<arg>${expected_message}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:11:32.510" level="TRACE">Arguments: [ '$.message' | 'Nothing to geocode' ]</msg>
+<msg timestamp="20210606 22:11:32.531" level="TRACE">Return: ['Nothing to geocode']</msg>
+<status status="PASS" starttime="20210606 22:11:32.509" endtime="20210606 22:11:32.531"/>
+</kw>
+<msg timestamp="20210606 22:11:32.531" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.509" endtime="20210606 22:11:32.531"/>
+</kw>
+<msg timestamp="20210606 22:11:32.531" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:11:32.401" endtime="20210606 22:11:32.531"/>
+</kw>
+<status status="PASS" starttime="20210606 22:11:32.400" endtime="20210606 22:11:32.532"/>
+</test>
+<status status="PASS" starttime="20210606 22:11:30.463" endtime="20210606 22:11:32.533"/>
+</suite>
+<statistics>
+<total>
+<stat pass="9" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="9" fail="0" skip="0" id="s1" name="Weather-By-Coordinate">Weather-By-Coordinate</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

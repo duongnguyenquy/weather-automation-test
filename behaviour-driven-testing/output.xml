@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.3 (Python 3.8.5 on win32)" generated="20210606 22:16:57.394" rpa="false" schemaversion="2">
+<suite id="s1" name="Weather-In-The-City" source="D:\workspace\NAB-assignment\behaviour-driven-testing\weather-in-the-city.robot">
+<test id="s1-t1" name="Weather API should response with success status code">
+<kw name="Response should be matched with the expected schema" type="SETUP">
+<doc>Verify the response body with expected schema</doc>
+<msg timestamp="20210606 22:16:57.685" level="TRACE">Arguments: [  ]</msg>
+<kw name="Expect Response" library="REST">
+<arg>D:\\workspace\\NAB-assignment\\behaviour-driven-testing/json-schema.json</arg>
+<arg>merge=false</arg>
+<tag>expectations</tag>
+<doc>*Sets the schema to validate the response properties.*</doc>
+<msg timestamp="20210606 22:16:57.685" level="TRACE">Arguments: [ 'D:\\workspace\\NAB-assignment\\behaviour-driven-testing/json-schema.json' | merge=False ]</msg>
+<msg timestamp="20210606 22:16:57.686" level="TRACE">Return: {'$schema': 'duongnq',
+ 'properties': {'body': {'properties': {'base': {'type': 'string'},
+                                        'clouds': {'properties': {'all': {'type': 'integer'}},
+                                                   'required': ['all'],
+                                                   'type': 'object'},
+                                        'cod': {'type': 'integer'},
+                                        'coord': {'properties': {'lat': {'type': 'number'},
+                                                                 'lon': {'type': 'number'}},
+                                                  'required': ['lat', 'lon'],
+                                                  'type': 'object'},
+                                        'dt': {'type': 'integer'},
+                                        'id': {'type': 'integer'},
+                                        'main': {'properties': {'feels_like': {'type': 'number'},
+                                                                'grnd_level': {'type': 'integer'},
+                                                                'humidity': {'type': 'integer'},
+                                                                'pressure': {'type': 'integer'},
+                                                                'sea_level': {'type': 'integer'},
+                                                                'temp': {'type': 'number'},
+                                                                'temp_max': {'type': 'number'},
+                                                                'temp_min': {'type': 'number'}},
+                                                 'required': ['feels_like',
+                                                              'grnd_level',
+                                                              'humidity',
+                                                              'pressure',
+                                                              'sea_level',
+                                                              'temp',
+                                                              'temp_max',
+                                                              'temp_min'],
+                                                 'type': 'object'},
+                                        'name': {'type': 'string'},
+                                        'sys': {'properties': {'country': {'type': 'string'},
+                                                               'id': {'type': 'integer'},
+                                                               'sunrise': {'type': 'integer'},
+                                                               'sunset': {'type': 'integer'},
+                                                               'type': {'type': 'integer'}},
+                                                'required': ['country',
+                                                             'id',
+                                                             'sunrise',
+                                                             'sunset',
+                                                             'type'],
+                                                'type': 'object'},
+                                        'timezone': {'type': 'integer'},
+                                        'visibility': {'type': 'integer'},
+                                        'weather': {'items': [{'properties': {'description': {'type': 'string'},
+                                                                              'icon': {'type': 'string'},
+                                                                              'id': {'type': 'integer'},
+                                                                              'main': {'type': 'string'}},
+                                                               'required': ['description',
+                                                                            'icon',
+                                                                            'id',
+                                                                            'main'],
+                                                               'type': 'object'}],
+                                                    'type': 'array'},
+                                        'wind': {'properties': {'deg': {'type': 'integer'},
+                                                                'gust': {'type': 'number'},
+                                                                'speed': {'type': 'number'}},
+                                                 'required': ['deg',
+                                                              'gust',
+                                                              'speed'],
+                                                 'type': 'object'}},
+                         'required': ['base',
+                                      'clouds',
+                                      'cod',
+                                      'coord',
+                                      'dt',
+                                      'id',
+                                      'main',
+                                      'name',
+                                      'sys',
+                                      'timezone',
+                                      'visibility',
+                                      'weather',
+                                      'wind'],
+                         'type': 'object'},
+                'headers': {'properties': {'Access-Control-Allow-Credentials': {'type': 'string'},
+                                           'Access-Control-Allow-Methods': {'type': 'string'},
+                                           'Access-Control-Allow-Origin': {'type': 'string'},
+                                           'Connection': {'type': 'string'},
+                                           'Content-Length': {'type': 'string'},
+                                           'Content-Type': {'type': 'string'},
+                                           'Date': {'type': 'string'},
+                                           'Server': {'type': 'string'},
+                                           'X-Cache-Key': {'type': 'string'}},
+                            'required': ['Access-Control-Allow-Credentials',
+                                         'Access-Control-Allow-Methods',
+                                         'Access-Control-Allow-Origin',
+                                         'Connection',
+                                         'Content-Length',
+                                         'Content-Type',
+                                         'Date',
+                                         'Server',
+                                         'X-Cache-Key'],
+                            'type': 'object'},
+                'seconds': {'type': 'number'},
+                'status': {'type': 'integer'}},
+ 'required': ['body', 'headers', 'seconds', 'status'],
+ 'type': 'object'}</msg>
+<status status="PASS" starttime="20210606 22:16:57.685" endtime="20210606 22:16:57.689"/>
+</kw>
+<msg timestamp="20210606 22:16:57.689" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:16:57.685" endtime="20210606 22:16:57.689"/>
+</kw>
+<kw name="Get the current weather with specific city name">
+<arg>app_id=${app_id}</arg>
+<arg>city_name=${city_name}</arg>
+<msg timestamp="20210606 22:16:57.689" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${city_name}='Hanoi' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>q=${city_name}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:16:57.690" level="TRACE">Arguments: [ 'appId=${app_id}' | 'q=${city_name}' ]</msg>
+<msg timestamp="20210606 22:16:57.690" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'q': 'Hanoi'}</msg>
+<msg timestamp="20210606 22:16:57.690" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'q': 'Hanoi'}</msg>
+<status status="PASS" starttime="20210606 22:16:57.690" endtime="20210606 22:16:57.690"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:16:57.691" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'q': 'Hanoi'} ]</msg>
+<msg timestamp="20210606 22:16:57.693" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:16:57.864" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;q=Hanoi HTTP/1.1" 200 523</msg>
+<msg timestamp="20210606 22:16:57.912" level="TRACE">Return: {'body': {'base': 'stations',
+          'clouds': {'all': 93},
+          'cod': 200,
+          'coord': {'lat': 21.0245, 'lon': 105.8412},
+          'dt': 1622992614,
+          'id': 1581130,
+          'main': {'feels_like': 308.11,
+                   'grnd_level': 1003,
+                   'humidity': 81,
+                   'pressure': 1005,
+                   'sea_level': 1005,
+                   'temp': 302.15,
+                   'temp_max': 302.15,
+                   'temp_min': 302.15},
+          'name': 'Hanoi',
+          'sys': {'country': 'VN',
+                  'id': 9308,
+                  'sunrise': 1622931277,
+                  'sunset': 1622979374,
+                  'type': 1},
+          'timezone': 25200,
+          'visibility': 10000,
+          'weather': [{'description': 'overcast clouds',
+                       'icon': '04n',
+                       'id': 804,
+                       'main': 'Clouds'}],
+          'wind': {'deg': 119, 'gust': 6.87, 'speed': 3.26}},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '523',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:16:56 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;q=hanoi'},
+ 'seconds': 0.171653,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210606 22:16:57.690" endtime="20210606 22:16:57.913"/>
+</kw>
+<msg timestamp="20210606 22:16:57.913" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:16:57.689" endtime="20210606 22:16:57.913"/>
+</kw>
+<kw name="Verify status code should be &quot;200&quot;" sourcename="Verify status code should be &quot;${expected_status_code}&quot;">
+<msg timestamp="20210606 22:16:57.913" level="TRACE">Arguments: [ ${expected_status_code}='200' ]</msg>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>${expected_status_code}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<msg timestamp="20210606 22:16:57.914" level="TRACE">Arguments: [ 'response status' | '200' ]</msg>
+<msg timestamp="20210606 22:16:57.914" level="TRACE">Return: [200]</msg>
+<status status="PASS" starttime="20210606 22:16:57.914" endtime="20210606 22:16:57.914"/>
+</kw>
+<msg timestamp="20210606 22:16:57.914" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:16:57.913" endtime="20210606 22:16:57.914"/>
+</kw>
+<status status="PASS" starttime="20210606 22:16:57.684" endtime="20210606 22:16:57.915"/>
+</test>
+<test id="s1-t2" name="Weather API should response with correct city name">
+<kw name="String" library="REST">
+<arg>$.name</arg>
+<arg>Hanoi</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:16:57.917" level="TRACE">Arguments: [ '$.name' | 'Hanoi' ]</msg>
+<msg timestamp="20210606 22:16:57.948" level="TRACE">Return: ['Hanoi']</msg>
+<status status="PASS" starttime="20210606 22:16:57.917" endtime="20210606 22:16:57.949"/>
+</kw>
+<status status="PASS" starttime="20210606 22:16:57.916" endtime="20210606 22:16:57.949"/>
+</test>
+<test id="s1-t3" name="Weather API should response with multi languague support">
+<kw name="Get the current weather with global language">
+<arg>app_id=${app_id}</arg>
+<arg>city_name=${city_name}</arg>
+<arg>lang=vi</arg>
+<msg timestamp="20210606 22:16:57.951" level="TRACE">Arguments: [ ${app_id}='2f08789bc0f5212446e72aa9c5ea7937' | ${city_name}='Hanoi' | ${lang}='vi' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${request_body}</var>
+<arg>appId=${app_id}</arg>
+<arg>q=${city_name}</arg>
+<arg>lang=${lang}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210606 22:16:57.951" level="TRACE">Arguments: [ 'appId=${app_id}' | 'q=${city_name}' | 'lang=${lang}' ]</msg>
+<msg timestamp="20210606 22:16:57.952" level="TRACE">Return: {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lang': 'vi', 'q': 'Hanoi'}</msg>
+<msg timestamp="20210606 22:16:57.952" level="INFO">${request_body} = {'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'q': 'Hanoi', 'lang': 'vi'}</msg>
+<status status="PASS" starttime="20210606 22:16:57.951" endtime="20210606 22:16:57.952"/>
+</kw>
+<kw name="GET" library="REST">
+<arg>${query_path}</arg>
+<arg>query=${request_body}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20210606 22:16:57.952" level="TRACE">Arguments: [ '/data/2.5/weather' | query={'appId': '2f08789bc0f5212446e72aa9c5ea7937', 'lang': 'vi', 'q': 'Hanoi'} ]</msg>
+<msg timestamp="20210606 22:16:57.953" level="DEBUG">Starting new HTTP connection (1): api.openweathermap.org:80</msg>
+<msg timestamp="20210606 22:16:58.043" level="DEBUG">http://api.openweathermap.org:80 "GET /data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;q=Hanoi&amp;lang=vi HTTP/1.1" 200 527</msg>
+<msg timestamp="20210606 22:16:58.047" level="TRACE">Return: {'body': {'base': 'stations',
+          'clouds': {'all': 93},
+          'cod': 200,
+          'coord': {'lat': 21.0245, 'lon': 105.8412},
+          'dt': 1622992617,
+          'id': 1581130,
+          'main': {'feels_like': 308.11,
+                   'grnd_level': 1003,
+                   'humidity': 81,
+                   'pressure': 1005,
+                   'sea_level': 1005,
+                   'temp': 302.15,
+                   'temp_max': 302.15,
+                   'temp_min': 302.15},
+          'name': 'Hà Nội',
+          'sys': {'country': 'VN',
+                  'id': 9308,
+                  'sunrise': 1622931277,
+                  'sunset': 1622979374,
+                  'type': 1},
+          'timezone': 25200,
+          'visibility': 10000,
+          'weather': [{'description': 'mây đen u ám',
+                       'icon': '04n',
+                       'id': 804,
+                       'main': 'Clouds'}],
+          'wind': {'deg': 119, 'gust': 6.87, 'speed': 3.26}},
+ 'headers': {'Access-Control-Allow-Credentials': 'true',
+             'Access-Control-Allow-Methods': 'GET, POST',
+             'Access-Control-Allow-Origin': '*',
+             'Connection': 'keep-alive',
+             'Content-Length': '527',
+             'Content-Type': 'application/json; charset=utf-8',
+             'Date': 'Sun, 06 Jun 2021 15:16:57 GMT',
+             'Server': 'openresty',
+             'X-Cache-Key': '/data/2.5/weather?appId=2f08789bc0f5212446e72aa9c5ea7937&amp;lang=vi&amp;q=hanoi'},
+ 'seconds': 0.09051000000000001,
+ 'status': 200}</msg>
+<status status="PASS" starttime="20210606 22:16:57.952" endtime="20210606 22:16:58.048"/>
+</kw>
+<msg timestamp="20210606 22:16:58.048" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210606 22:16:57.950" endtime="20210606 22:16:58.048"/>
+</kw>
+<kw name="String" library="REST">
+<arg>$.name</arg>
+<arg>Hà Nội</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<msg timestamp="20210606 22:16:58.049" level="TRACE">Arguments: [ '$.name' | 'Hà Nội' ]</msg>
+<msg timestamp="20210606 22:16:58.070" level="TRACE">Return: ['Hà Nội']</msg>
+<status status="PASS" starttime="20210606 22:16:58.049" endtime="20210606 22:16:58.070"/>
+</kw>
+<status status="PASS" starttime="20210606 22:16:57.950" endtime="20210606 22:16:58.070"/>
+</test>
+<status status="PASS" starttime="20210606 22:16:57.395" endtime="20210606 22:16:58.071"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Weather-In-The-City">Weather-In-The-City</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

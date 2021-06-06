@@ -1,0 +1,10 @@
+*** Test Cases ***,${app_id},${lat},${long},${expected_http_status},${expected_cod},${expected_message}
+Empty both lat and long,2f08789bc0f5212446e72aa9c5ea7937,${EMPTY},${EMPTY},400,400,Nothing to geocode
+Empty lat,2f08789bc0f5212446e72aa9c5ea7937,${EMPTY},105.8412,400,400,Nothing to geocode
+Empty long,2f08789bc0f5212446e72aa9c5ea7937,21.0245,${EMPTY},400,400,Nothing to geocode
+Special character lat,2f08789bc0f5212446e72aa9c5ea7937,!@#$%^,105.8412,400,400,Nothing to geocode
+Special character long,2f08789bc0f5212446e72aa9c5ea7937,21.0245,!@#$%^,400,400,Nothing to geocode
+Lat with 255 length,2f08789bc0f5212446e72aa9c5ea7937,YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn,105.8412,400,400,Nothing to geocode
+Long with 255 length,2f08789bc0f5212446e72aa9c5ea7937,21.0245,YRebqU1HDzecenlBA2PayqGSBduAPezRD5qwbBGUsWqX4JDaKAutIxD9TOgLiLttJi3w1gT9E6Jf0Ip8uj9xgSyXdeANmf6Y9ln00TDzohBORokoVJzw04SY0VnM0kjxqF2FUtQCmI1dd71Dx14Tb4aBT7LYAVN3dS8iV7otznFnQrvqMV9wryCkwP16NiigeoLxD2ZPn2U1VC4VFisec73N6jhy2FAiloT7Am30O5r2xuinrASqDeoH6NwtCqn,400,400,Nothing to geocode
+Injection Lat,2f08789bc0f5212446e72aa9c5ea7937,SELECT * FROM weather,105.8412,400,400,Nothing to geocode
+Injection Long,2f08789bc0f5212446e72aa9c5ea7937,21.0245,SELECT * FROM weather,400,400,Nothing to geocode
