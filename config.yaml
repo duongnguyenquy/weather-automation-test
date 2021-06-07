@@ -1,0 +1,5 @@
+
+#This file contains all the config variables
+app_id:          #Please change this to your own app_id
+api_version:     2.5
+module:          weather
